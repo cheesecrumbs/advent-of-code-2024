@@ -1,7 +1,7 @@
 const FILE_PATH =
   "/home/markus/Developing/AdventOfCode2024/src/resource/day1.csv";
 
-export default async function day1() {
+export async function day1_1() {
   const { first, second } = await readFile();
   const diff = [];
 
@@ -12,7 +12,31 @@ export default async function day1() {
       firstVal > secondVal ? firstVal - secondVal : secondVal - firstVal,
     );
   }
-  
+
+  return diff.reduce((a, b) => a + b);
+}
+
+export async function day1_2() {
+  const { first, second } = await readFile();
+  const counts: Map<number, number> = new Map();
+  const diff = [];
+
+  for (let index = 0; index < second.length; index++) {
+    const element = second[index];
+    const value = counts.get(element) !== undefined
+      ? counts.get(element)! + 1
+      : 1;
+    counts.set(element, value);
+  }
+
+  for (let index = 0; index < first.length; index++) {
+    const element = first[index];
+    const count = counts.get(element);
+    if (count !== undefined) {
+      diff.push(element * count);
+    }
+  }
+
   return diff.reduce((a, b) => a + b);
 }
 
