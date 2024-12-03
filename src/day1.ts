@@ -1,5 +1,5 @@
 const FILE_PATH =
-  "/home/markus/Developing/AdventOfCode2024/src/resource/day1.csv";
+  "/home/markus/Developing/AdventOfCode2024/src/resource/day1.txt";
 
 export async function day1_1() {
   const { first, second } = await readFile();
