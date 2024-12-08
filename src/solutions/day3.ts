@@ -1,19 +1,14 @@
-const FILE_PATH =
-    "/home/markus/Developing/AdventOfCode2024/src/resource/day3.txt";
-
-export async function day3_1() {
-    const text = await Deno.readTextFile(FILE_PATH);
+export function day3partOne(fileContent: string): number | undefined {
     const mulRegex = /mul\(\d*,\d*\)/gm;
 
-    return mapMatchesToResult(text.match(mulRegex), mulRegex);
+    return mapMatchesToResult(fileContent.match(mulRegex), mulRegex);
 }
 
-export async function day3_2() {
-    const text = await Deno.readTextFile(FILE_PATH);
+export function day3partTwo(fileContent: string): number | undefined {
     const mulRegex = /mul\(\d*,\d*\)/gm;
     const doAndDontMulRegex = /(mul\(\d*,\d*\))|don't\(\)(.|\n)+?(do\(\))/gm;
 
-    const validMatches = text.match(doAndDontMulRegex)?.filter((match) =>
+    const validMatches = fileContent.match(doAndDontMulRegex)?.filter((match) =>
         !match.startsWith("don't()")
     ).flatMap((validMatch) => validMatch);
 
